@@ -1,0 +1,40 @@
+<!-- 标题tab -->
+<view class="tab" style="height: {{tab_height}}px">
+    <block wx:for="{{tab}}">
+        <view class="tabitem {{index === tabselected ? 'selected' : ''}}" data-id="{{index}}" bindtap="bindTabTap" style="width: {{100/tab.length}}%;"> 
+          {{item}}
+        </view>
+    </block>
+</view>
+<view class="line withAnimate" style="width: {{100/tab.length}}%; margin-left:{{100/tab.length*tabselected}}%"/>
+
+<!-- 页面内容 catchtouchmove="forbidSwiperMove" -->
+<swiper current="{{swiperselected}}" bindchange="swiperChange" style="width:100%;height:{{height}}rpx;background-color:#f7f7f7" >
+  <block wx:for="{{content}}" wx:key="{{index}}" wx:for-item="orderdata">
+    <swiper-item>
+        <view wx:if="{{orderdata.length==0}}" class='no_content_me'>
+          暂时还没有订单数据 
+        </view>
+        <scroll-view scroll-y="true" style="height:2000rpx">
+          <block wx:for="{{orderdata}}" wx:for-item="orderinfo">
+            <view class="orderinfo_block_me" wx:if="{{orderdata.length>0}}">
+              <view class='order_title_me'>
+                订单号：{{orderinfo.orderno}}
+              </view>
+              <view class='order_delete_me'>
+                <image src='{{deleteImg}}' class='delete_img_me'></image>
+                <view wx:if="{{orderinfo.orderStatus==1}}" class='order_status_me'>待支付  | </view>
+                <view wx:elif="{{orderinfo.orderStatus==2}}" class='order_status_me'>进行中  | </view>
+                <view wx:elif="{{orderinfo.orderStatus==3}}" class='order_status_me'>已完成  | </view>
+                <view wx:elif="{{orderinfo.orderStatus==4}}" class='order_status_me'>已取消  | </view>
+                <view wx:else>未知状态 |</view>
+              </view>
+              <view class='order_body_me'></view>
+              <view class='order_buttom_me'></view>
+            </view>
+          </block>
+        </scroll-view>
+    </swiper-item>
+  </block>
+</swiper>
+       

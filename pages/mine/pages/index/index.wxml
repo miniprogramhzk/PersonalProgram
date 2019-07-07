@@ -1,0 +1,57 @@
+<page>
+  <scroll-view class="page_body" scroll-y="true">
+    <!-- 最上面背景 -->
+    <view class="head_me">
+      <view class='userinfo_vi_me'>
+        <view class='image_user_view_me'>
+          <image src="{{userImg}}" class='image_user_me'></image>
+        </view>
+        <view></view>
+      </view>
+      <view class='username_vi_me'>
+        <view wx:if="{{isLogin == false}}" class='username_me' bindtap='getUserInfo'>请点击登录</view>
+        <view wx:else class='username_me'>{{userName}}</view>
+      </view>
+    </view>
+
+    <!-- 订单明细框 -->
+    <view class='second_me'>
+      <view class='left_delta_me'></view>
+      <view class='bozy_me'>
+        <view class='bozy_irs_me' bindtap='select_order' data-oid='2'>
+        <image src='../../../../image/img_icon/ceshishenqing.png' style='width:50rpx;height:50rpx;z-index:3;margin-top:20rpx;float:left;'></image>
+          所有订单
+          <image src='../../../common/image/kind3/form.png' class='bozy_img_me'></image>
+        </view>
+
+        <view class='orderlist_me'>
+          <view class='list' bindtap='select_order' data-oid='0'>
+            <view class='list_pay' style="{{payOrderNum>0?'display:block':'display:none'}}">{{payOrderNum}}</view>
+            <image src='../../../../image/img_icon/account_book-fill.png' style='height:80rpx;width:80rpx;margin-top:10rpx;'></image>
+            <view class='list_title'>待支付</view>
+          </view>
+          <view class='list' bindtap='select_order' data-oid='1'>
+            <view class='list_pay' style="{{processOrderNum>0?'display:block':'display:none'}}">{{processOrderNum}}</view>
+            <image src='../../../../image/img_icon/Stored_procedure.png' style='height:80rpx;width:80rpx;margin-top:10rpx;'></image>
+            <view class='list_title'>进行中</view>
+          </view>
+          <view class='list' bindtap='select_order' data-oid='2'>
+            <view class='list_pay' style="{{finishOrderNum>0?'display:block':'display:none'}}">{{finishOrderNum}}</view>
+            <image src='../../../../image/img_icon/carry_out-fill.png' style='height:80rpx;width:80rpx;margin-top:10rpx;'></image>
+            <view class='list_title'>已完成</view>
+          </view>
+          <view class='list' bindtap='select_order' data-oid='3'>
+            <view class='list_pay' style="{{cancelOrderNum>0?'display:block':'display:none'}}">{{cancelOrderNum}}</view>
+            <image src='../../../../image/img_icon/calendar-fill.png' style='height:80rpx;width:80rpx;margin-top:10rpx;'></image>
+            <view class='list_title'>已取消</view>
+          </view>
+        </view>
+      </view>
+      <view class='right_delta_me'></view>
+    </view>
+
+    <view class='buttom_me'>
+
+    </view>
+  </scroll-view>
+</page>
